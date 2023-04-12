@@ -1,18 +1,14 @@
-from . import fault_impact_vis, TOOL_POSITION, DISTANCE_INC, PERISCOPE_RANGE
+from . import TOOL_POSITION, DISTANCE_INC, PERISCOPE_RANGE
+from .fault_vis_functions_plotly import fault_impact_vis
 
 
 class Trajectory:
-    def __init__(
-        self,
-        approach_angle,
-        dog_leg_severity,
-        fault_offset,
-        seam_thickness,
-    ):
-        self.approach_angle = approach_angle
-        self.dog_leg_severity = dog_leg_severity
-        self.fault_offset = fault_offset
-        self.seam_thickness = seam_thickness
+    def __init__(self):
+        # Initialize with default values
+        self.approach_angle = 4
+        self.dog_leg_severity = 3
+        self.fault_offset = 10
+        self.seam_thickness = 5
 
         # Project parameters from json.config
         self.tool_position = TOOL_POSITION

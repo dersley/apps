@@ -1,7 +1,5 @@
 import json
 
-from .fault_vis_functions_plotly import *
-
 # Run json variables
 with open('fault_impact/config.json') as f:
     config = json.load(f)

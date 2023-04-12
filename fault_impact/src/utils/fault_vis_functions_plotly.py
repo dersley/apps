@@ -112,7 +112,7 @@ def fault_impact_plot_init(seam_thickness, fault_offset):
         x1=0,
         y1= -seam_thickness/2,
         fillcolor="grey",
-        opacity=0.6
+        opacity=0.5,
     )
     
     # Add the coal seam after fault
@@ -125,16 +125,16 @@ def fault_impact_plot_init(seam_thickness, fault_offset):
         x1=400,
         y1=fault_offset - seam_thickness/2,
         fillcolor="grey",
-        opacity=0.6
+        opacity=0.5,
     )
 
-    # Add the vertical line
+    # Add the vertical fault line
     fig.add_shape(
         type="line",
         x0=0,
         x1=0,
-        y0= - seam_thickness/2,
-        y1= fault_offset + seam_thickness/2,
+        y0= -10,
+        y1= 2 + fault_offset + seam_thickness/2,
         line=dict(color="red"),
     )
 
@@ -148,11 +148,10 @@ def fault_impact_plot_init(seam_thickness, fault_offset):
         xaxis_title="Distance (m)",
         yaxis_title="Relative Vertical Position (m)",
         showlegend=False,
-        template='plotly'
+        template='plotly_white'
     )
 
     return fig
-
 
 
 def fault_impact_vis(
@@ -221,7 +220,7 @@ def fault_impact_vis(
                 z = 0
             else:
                 build = True
-                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Angle build'))
+                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Angle build', marker=dict(color="green", size=8)))
                 print(
                     f"Building angle to {round(90 - approach_angle,2)} degrees at x = {round(x,2)} z = {round(z,2)}"
                 )
@@ -234,7 +233,7 @@ def fault_impact_vis(
 
             else:
                 hold = True
-                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Approach angle reached'))
+                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Approach angle reached', marker=dict(color="green", size=8)))
 
         # hold our approach angle until we detect the coal seam
         if hold == True and detected == False:
@@ -247,8 +246,8 @@ def fault_impact_vis(
             and is_detected(z, angle, coal_base, periscope_range, tool_position) == True
         ):
             detected = True
-            fig.add_trace(go.Scatter(x=[x, x], y=[z, coal_base], mode='lines')) 
-            fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Seam detected'))
+            fig.add_trace(go.Scatter(x=[x, x], y=[z, coal_base], mode='lines', marker=dict(color="purple"))) 
+            fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Seam detected', marker=dict(color="purple", size=8)))
 
         # once the seam is detected, we may immediately begin landing or keep holding angle until the right time
         if detected == True and land == False:
@@ -267,7 +266,7 @@ def fault_impact_vis(
                 == True
             ):
                 land = True
-                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Landing'))
+                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Landing', marker=dict(color="green", size=8)))
                 print(f"Landing initiated at x = {round(x,2)} z = {round(z,2)}")
                 # this j counter allows us to return the angle build to initial conditions
                 j = i
@@ -285,7 +284,7 @@ def fault_impact_vis(
 
             # we have reached our landing angle and are hopefully now back in seam
             if angle >= land_angle:
-                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers'))
+                fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', marker=dict(color="green", size=8)))
                 print(f"Landed at x = {round(x,2)} z = {round(z,2)}")
                 breakpoint = index
                 break
@@ -296,14 +295,14 @@ def fault_impact_vis(
             print(
                 f"Seam reentry at x = {round(x,2)} z = {round(z,2)} , total fault impact = {round(i,2)} m"
             )
-            fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Seam reentry'))
+            fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text='Seam reentry', marker=dict(color="red", size=8)))
 
         if reexit == False and z >= coal_top:
             reexit = True
             print(
                 f"WARNING: Seam reexit at x = {round(x,2)} z = {round(z,2)} , reduce approach angle or increase dog leg severity"
             )
-            fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text="Seam reexit"))
+            fig.add_trace(go.Scatter(x=[x], y=[z], mode='markers', text="Seam reexit", marker=dict(color="red", size=8)))
 
         # add the x, z coordinates to the plot
         x_plot[index] = x

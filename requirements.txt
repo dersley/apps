@@ -1,8 +1,12 @@
+Babel
+python-i18n
 matplotlib
 nbformat
 pandas
+pandas-stubs
 plotly
 dash
 dash-core-components
 dash-html-components
 dash-bootstrap-components
+scipy

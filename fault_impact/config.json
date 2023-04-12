@@ -1,5 +1,5 @@
 {
-    "DISTANCE_INC" : 0.1,
+    "DISTANCE_INC" : 1,
     "TOOL_POSITION" : 13,
     "PERISCOPE_RANGE" : 3
 }
