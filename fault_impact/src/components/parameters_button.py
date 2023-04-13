@@ -8,12 +8,13 @@ from . import ids
 def render(app: Dash) -> html.Div:
 
     @app.callback(
-        Output("output-div", "value"),
+        Output(ids.SAVE_PARAMETERS_BUTTON, "children"),
         Input(ids.SAVE_PARAMETERS_BUTTON, "n_clicks"),
         State(ids.APPROACH_ANGLE_SLIDER, "value"),
         State(ids.DOG_LEG_SEVERITY_SLIDER, "value"),
         State(ids.FAULT_OFFSET_SLIDER, "value"),
         State(ids.SEAM_THICKNESS_SLIDER, "value"),
+        prevent_initial_call=True,
     )
     def save_state(n_clicks, approach_angle_value, dog_leg_severity_value, fault_offset_value, seam_thickness_value):
         if n_clicks is None:
@@ -25,19 +26,17 @@ def render(app: Dash) -> html.Div:
                 "fault_offset": fault_offset_value,
                 "seam_thickness": seam_thickness_value,
             }
-            return state_dict
-        
+
+            return "Parameters Saved!"
+
     return html.Div(
         className="button-container",
+        id="button-container",
         children=[
-        dbc.Button(
+            dbc.Button(
                 "Save Parameters",
                 id=ids.SAVE_PARAMETERS_BUTTON,
-                color="primary"),
-        html.Div(
-            id="output-div",
-            children=[
-                dbc.Alert("Parameters Saved", color="Success")
-            ]
-        )]
+                color="primary",
+            ),
+        ]
     )

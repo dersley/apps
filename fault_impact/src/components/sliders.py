@@ -21,7 +21,7 @@ def render(app: Dash) -> html.Div:
     ], md=6)
 
     slider_col2 = dbc.Col([
-        html.H3("Dog Leg Severity (angle build per 30m)"),
+        html.H3("Dog Leg Severity (deg per 30m)"),
         dcc.Slider(
             id=ids.DOG_LEG_SEVERITY_SLIDER,
             min=0,

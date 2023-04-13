@@ -9,8 +9,9 @@ h3 {
     font-size: 16px;
 }
 
-.button-container {
+.plot-container plotly {
     text-align: center;
+    align-items: center;
     padding: 24px;
 }
 
