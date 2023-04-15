@@ -8,8 +8,8 @@ from . import ids
 def render(app: Dash) -> html.Div:
 
     @app.callback(
-        Output(ids.SAVE_PARAMETERS_BUTTON, "children"),
-        Input(ids.SAVE_PARAMETERS_BUTTON, "n_clicks"),
+        Output(ids.IMPACT_PARAMETERS_BUTTON, "children"),
+        Input(ids.IMPACT_PARAMETERS_BUTTON, "n_clicks"),
         State(ids.APPROACH_ANGLE_SLIDER, "value"),
         State(ids.DOG_LEG_SEVERITY_SLIDER, "value"),
         State(ids.FAULT_OFFSET_SLIDER, "value"),
@@ -31,11 +31,11 @@ def render(app: Dash) -> html.Div:
 
     return html.Div(
         className="button-container",
-        id="button-container",
+        id="impact-button-container",
         children=[
             dbc.Button(
-                "Save Parameters",
-                id=ids.SAVE_PARAMETERS_BUTTON,
+                "Save Fault Impact Parameters",
+                id=ids.IMPACT_PARAMETERS_BUTTON,
                 color="primary",
             ),
         ]

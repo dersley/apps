@@ -20,7 +20,9 @@ def render(app: Dash) -> html.Div:
     # Create graph element for layout
     graph = dcc.Graph(id=ids.BAYESIAN_UPDATE_CHART, figure={})
 
-    return html.Div([graph])
+    return html.Div(
+        className="chart-container",
+        children=[graph])
 
         
 

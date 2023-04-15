@@ -9,7 +9,7 @@ def main() -> None:
     app = Dash(__name__, external_stylesheets=[BOOTSTRAP])
     app.title = "Bayesian Update Visualisation"
     app.layout = create_layout(app)
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 if __name__ == "__main__":

@@ -41,7 +41,7 @@ def render(app: Dash) -> html.Div:
             max=25,
             step=0.1,
             value=10,
-            tooltip={"always_visible": True, "placement": "top"},
+            tooltip={"always_visible": True, "placement": "bottom"},
             marks={i: str(i) for i in range(0, 26, 5)}
         ),
     ], md=6)
@@ -54,7 +54,7 @@ def render(app: Dash) -> html.Div:
             max=25,
             step=0.1,
             value=3,
-            tooltip={"always_visible": True, "placement": "top"},
+            tooltip={"always_visible": True, "placement": "bottom"},
             marks={i: str(i) for i in range(0, 26, 5)}
         ),
     ], md=6)

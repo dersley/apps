@@ -7,9 +7,9 @@ from src.components.layout import create_layout
 
 def main() -> None:
     app = Dash(__name__, external_stylesheets=[BOOTSTRAP])
-    app.title = "Horizontal Drilling Fault Impact: Tuning"
+    app.title = "Horizontal Drilling Fault Impact"
     app.layout = create_layout(app)
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 if __name__ == "__main__":

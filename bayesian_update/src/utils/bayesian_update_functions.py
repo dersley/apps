@@ -27,7 +27,7 @@ def bayesian_update(prior: float, likelihood: float) -> float:
 
 
 def bayesian_update_plot(likelihood):
-    prior = np.arange(0.001, 0.999, 0.001)
+    prior = np.arange(0, 1, 0.001)
 
     posterior = []
     for i in prior:
@@ -41,7 +41,7 @@ def bayesian_update_plot(likelihood):
     else:
         color = "red"
 
-    fig.add_trace(go.Scatter(x=prior, y=prior, mode="lines", name="Prior Probability"))
+    fig.add_trace(go.Scatter(x=[0,1], y=[0,1], mode="lines", name="Prior Probability"))
 
     if likelihood != 0 or likelihood != 1:
         fig.add_trace(
@@ -80,11 +80,10 @@ def bayesian_update_plot(likelihood):
     
 
     fig.update_layout(
-        title=f"Bayesian Update with a Likelihood of {likelihood}",
         xaxis_title="Prior Probability",
         yaxis_title="Posterior Probability",
-        width=600,
-        height=600,
+        width=550,
+        height=550,
         showlegend=True,
         legend=dict(
             x=0,
@@ -94,6 +93,8 @@ def bayesian_update_plot(likelihood):
         ),
         margin=dict(l=50, r=50, t=50, b=50),
     )
+    fig.update_xaxes(range=[0,1])
+    fig.update_yaxes(range=[0,1])
 
     return fig
 
