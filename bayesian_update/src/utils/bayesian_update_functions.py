@@ -92,6 +92,7 @@ def bayesian_update_plot(likelihood):
             bordercolor="rgba(255, 255, 255, 0)",
         ),
         margin=dict(l=50, r=50, t=50, b=50),
+        template="plotly_white"
     )
     fig.update_xaxes(range=[0,1])
     fig.update_yaxes(range=[0,1])
