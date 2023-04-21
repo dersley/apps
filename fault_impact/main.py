@@ -9,7 +9,7 @@ def main() -> None:
     app = Dash(__name__, external_stylesheets=[BOOTSTRAP])
     app.title = "Horizontal Drilling Fault Impact"
     app.layout = create_layout(app)
-    app.run(debug=False)
+    app.run(debug=True)
 
 
 if __name__ == "__main__":

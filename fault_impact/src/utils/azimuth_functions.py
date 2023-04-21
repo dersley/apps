@@ -66,7 +66,7 @@ def bearing_to_theta(bearing, baseline_rotation):
     return theta
 
 
-def fault_density_plots(f_min, f_max, fault_azimuth, drilling_azimuth):
+def fault_azimuth_plot(f_min, f_max, fault_azimuth, drilling_azimuth):
     """
     this will wrap fault_density_at_azimuth around 360 degrees and produce the ellipse plot
     """
@@ -83,7 +83,7 @@ def fault_density_plots(f_min, f_max, fault_azimuth, drilling_azimuth):
         y = np.append(y, fault_density_at_azimuth(f_min, f_max, fault_azimuth, angle)[1])
         fault_density = np.append(fault_density, fault_density_at_azimuth(f_min, f_max, fault_azimuth, angle)[2])
 
-        print(f"At theta = {angle}, bearing = {round(theta_to_bearing(angle, fault_azimuth))}")
+        #print(f"At theta = {angle}, bearing = {round(theta_to_bearing(angle, fault_azimuth))}")
     
     # plotly express plot
     fig = px.line(
@@ -132,12 +132,15 @@ def fault_density_plots(f_min, f_max, fault_azimuth, drilling_azimuth):
 
     # Format plot
     fig.update_layout(
-        title=f"F-min: {f_min}, F-max: {f_max}, Azimuth: {fault_azimuth}. Drilling Azimuth: {drilling_azimuth}", 
+        #title=f"F-min: {f_min}, F-max: {f_max}, Azimuth: {fault_azimuth}. Drilling Azimuth: {drilling_azimuth}", 
         xaxis_title='X', 
         yaxis_title='Y',
-        template="plotly_white")
-    fig.update_xaxes(range=[-f_max, f_max])
-    fig.update_yaxes(range=[-f_max, f_max])
+        template="plotly_white",
+        height=500,
+        width=500,
+        )
+    fig.update_xaxes(range=[-5, 5])
+    fig.update_yaxes(range=[-5, 5])
 
 
     return fig
@@ -145,7 +148,7 @@ def fault_density_plots(f_min, f_max, fault_azimuth, drilling_azimuth):
 
 if __name__ == "__main__":  
     
-    fig = fault_density_plots(
+    fig = fault_azimuth_plot(
         f_min=1,
         f_max=2,
         fault_azimuth=90,

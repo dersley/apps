@@ -14,3 +14,11 @@ h3 {
     padding: 24px;
 }
 
+.chart-container {
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+}
+
+
+
