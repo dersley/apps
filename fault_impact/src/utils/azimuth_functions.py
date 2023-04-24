@@ -123,12 +123,12 @@ def fault_azimuth_plot(f_min, f_max, fault_azimuth, drilling_azimuth):
     drill_x, drill_y, drill_density = fault_density_at_azimuth(f_min, f_max, fault_azimuth, drilling_theta)
 
     # Add a compass arrow corresponding to the drilling azimuth
-    fig.add_shape(
-        type="line",
-        x0=0, y0=0,
-        x1=drill_x, y1=drill_y,
-        line=dict(color="green")
-    )
+    #fig.add_shape(
+        #type="line",
+        #x0=0, y0=0,
+        #x1=drill_x, y1=drill_y,
+        #line=dict(color="green")
+    #)
 
     # Format plot
     fig.update_layout(
@@ -139,8 +139,8 @@ def fault_azimuth_plot(f_min, f_max, fault_azimuth, drilling_azimuth):
         height=500,
         width=500,
         )
-    fig.update_xaxes(range=[-5, 5])
-    fig.update_yaxes(range=[-5, 5])
+    fig.update_xaxes(range=[-1, 1])
+    fig.update_yaxes(range=[-1, 1])
 
 
     return fig
@@ -149,9 +149,9 @@ def fault_azimuth_plot(f_min, f_max, fault_azimuth, drilling_azimuth):
 if __name__ == "__main__":  
     
     fig = fault_azimuth_plot(
-        f_min=1,
-        f_max=2,
-        fault_azimuth=90,
+        f_min=0.2,
+        f_max=0.7,
+        fault_azimuth=130,
         drilling_azimuth=5
     )
     fig.show()
